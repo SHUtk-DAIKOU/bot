@@ -4,10 +4,8 @@ const path = require('path');
 let commands = []
 
 fs.readdirSync(__dirname, {withFileTypes: true}).forEach((dirent) => {
-    if(dirent.isFile()){
-        if(dirent.name !== 'index.js'){
-            commands.push(path.basename(dirent.name, '.js'));
-        }
+    if (dirent.isFile() && dirent.name !== 'index.js') {
+        commands.push(path.basename(dirent.name, '.js'));
     }
 });
 
