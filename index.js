@@ -4,7 +4,7 @@ const client = new Client({
 });
 
 const prefix = 'o!'
-const commandNotFound = "コマンドが見つかりません"
+const commandNotFound = ":x: コマンドが見つかりません"
 const commands = require('./src/commands');
 const listeners = require('./src/event');
 
