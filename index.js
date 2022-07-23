@@ -17,7 +17,7 @@ listeners.forEach((listener) => {
 });
 
 client.on('messageCreate', (message) => {
-    if (message.content.startsWith(prefix)) {
+    if (message.content.startsWith(prefix) && message.author !== client.user) {
         const args = message.content.split(' ');
         const cmd = args[0].replace(prefix, '');
         if (commands.list.includes(cmd)) {
