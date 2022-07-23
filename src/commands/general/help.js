@@ -28,7 +28,7 @@ module.exports = {
         if (args.length === 1) {
             if (list.includes(args[0])) {
                 const cmd = require(cmdPos[list.indexOf(args[0])]);
-                return command.reply(`${args[0]}のヘルプ: ${cmd.help}`);
+                return command.reply(`${args[0]}のヘルプ: \n${cmd.help}`);
             } else {
                 tmpReply(command, 'そのコマンドは見つかりませんでした')
             }
