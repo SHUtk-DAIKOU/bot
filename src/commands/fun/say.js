@@ -9,6 +9,6 @@ module.exports = {
         }
     }, 
     help: '使い方: `say ...内容`\n内容をボットに発言させます', 
-    minArgs: 2
+    minArgs: 2,
     maxArgs: Number.MAX_SAFE_INTEGER
 }
