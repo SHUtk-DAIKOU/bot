@@ -1,5 +1,5 @@
 module.exports = {
-    exec: async (command, client) => {
+    exec: (command, client) => {
         const tmpReply = require('../lib/tmpReply');
         const args = require('../lib/args')(command.content);
         if (args.join(' ').length <= 2000) {
