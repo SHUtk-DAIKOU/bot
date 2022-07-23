@@ -27,9 +27,9 @@ client.on('messageCreate', (message) => {
             } else {
                 tmpReply(message, cmdres.help, 3000);
             }
+        } else {
+            tmpReply(message, commandNotFound);
         }
-    } else {
-        tmpReply(message, commandNotFound);
     }
 });
 
