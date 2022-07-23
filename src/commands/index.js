@@ -15,5 +15,6 @@ const getFiles = (dir) => {
         }
     });
 }
+getFiles(__dirname);
 
 module.exports = { list: commands, cmdPos }
