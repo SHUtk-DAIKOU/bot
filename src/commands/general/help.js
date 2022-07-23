@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const { Formatters } = require('discord.js');
 module.exports = {
     exec: (command, client) => {
         const args = require('../../lib/args')(command.content);
@@ -29,7 +28,7 @@ module.exports = {
         if (args.length === 1) {
             if (list.includes(args[0])) {
                 const cmd = require(cmdPos[list.indexOf(args[0])]);
-                command.reply(`${args[0]}のヘルプ: ${Formatters.inlineCode(cmd.help)}`);
+                command.reply(`${args[0]}のヘルプ: ${cmd.help}`);
             } else {
                 tmpReply(command, 'そのコマンドは見つかりませんでした')
             }
