@@ -1,6 +1,6 @@
 module.exports = {
     exec: (command, client) => {
-        const tmpReply = require('../lib/tmpReply');
+        const tmpReply = require('../../lib/tmpReply');
         const args = require('../lib/args')(command.content);
         if (args.join(' ').length <= 2000) {
             return command.channel.send(args.join(' '));
