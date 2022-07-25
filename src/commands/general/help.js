@@ -1,29 +1,37 @@
+const { MessageEmbed } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 module.exports = {
     exec: (command, client) => {
         const args = require('../../lib/args')(command.content);
         const tmpReply = require('../../lib/tmpReply');
+        const embedPage = require('../../lib/embedPage');
+
         const { list, cmdPos } = require('../index');
-        const getCommands = (category) => {
-            let cmds = []
-            let helps = []
-            fs.readdirSync(`../${category}`, { withFileTypes: true }).forEach((dirent) => {
-                if (dirent.isFile()) {
-                    cmds.push(dirent.name);
-                    const cmd = require(path.join(`../${category}`, dirent.name));
-                    helps.push(cmd.help);
-                }
-            });
-        }
-        const getCategorys = () => {
-            let res = []
+        const createHelpEmbeds = () => {
+            let categorys = []
             fs.readdirSync(path.dirname(__dirname), { withFileTypes: true }).forEach((dirent) => {
                 if (dirent.isDirectory()) {
-                    res.push(dirent.name);
+                    categorys.push(dirent.name);
                 }
             });
-            return res
+
+            let res = []
+
+            categorys.forEach((category) => {
+                let fields = []
+                fs.readdirSync(`../${category}`, { withFileTypes: true }).forEach((dirent) => {
+                    if (dirent.isFile()) {
+                        fields.push({ name: dirent.name, value: cmd.help });
+                    }
+                });
+                res.push(new MessageEmbed({
+                    title: category,
+                    fields,
+                    color: 'YELLOW',
+                }));
+                return res
+            });
         }
         if (args.length === 1) {
             if (list.includes(args[0])) {
@@ -33,7 +41,7 @@ module.exports = {
                 tmpReply(command, 'そのコマンドは見つかりませんでした')
             }
         } else {
-            
+            embedPage(command.reply, createHelpEmbeds());
         }
     },
     help: '使い方: `help (コマンド)`\nコマンドのヘルプを表示します\nヘルプを表示するコマンドを指定することもできます',
